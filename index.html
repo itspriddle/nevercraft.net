@@ -1,41 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>nevercraft.net</title>
-  <style>
-    html, body {
-      height: 100%;
-    }
-    body {
-      background-color: #fefefe;
-      color: #333;
-      font-family: "Courier New", monospace;
-      font-size: 10pt;
-    }
-    #main {
-      width: 800px;
-      margin: 30% auto;
-      text-align: center;
-    }
-    a:link, a:hover, a:visited, a:active {
-      font-weight: bold;
-      color: #2a7ae2;
-      text-decoration: underline;
-      text-decoration-style: dotted;
-    }
-  </style>
-</head>
-<body>
-  <main id="main">
-    <p><strong>nevercraft.net</strong></p>
-    <p>
-      <a href="https://github.com/itspriddle">github</a> |
-      <a href="https://josh.fail/">blog</a> |
-      <a href="https://bsky.app/profile/josh.fail">bsky</a>
-    </p>
-  </main>
-</body>
-</html>
+---
+layout: default
+---
+
+<div class="parallax-layer stars"></div>
+<div class="parallax-layer laser-1"></div>
+<div class="parallax-layer laser-2"></div>
+<div class="parallax-layer laser-3"></div>
+<div class="parallax-layer laser-4"></div>
+<div class="parallax-layer horizon"></div>
+<div class="grid-wrap parallax-layer"><div class="grid-floor"></div></div>
+<div class="vignette"></div>
+<div class="crt-warp"></div>
+
+<main class="terminal">
+  <header class="page-header">
+    <p class="font-mono"><strong>nevercraft.net</strong></p>
+  </header>
+
+  <nav class="nav-links font-mono">
+    <a href="https://github.com/itspriddle">github</a>
+    <span class="separator">|</span>
+    <a href="https://josh.fail/">blog</a>
+    <span class="separator">|</span>
+    <a href="https://bsky.app/profile/josh.fail">bsky</a>
+  </nav>
+</main>

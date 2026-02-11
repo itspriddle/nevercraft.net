@@ -1,0 +1,40 @@
+# Site settings
+url: https://nevercraft.net
+title: nevercraft.net
+description: >
+  nevercraft.net
+timezone: 'America/New_York'
+
+analytics:
+  google: UA-FIXME
+
+# Plugin settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+# Files to exclude
+exclude:
+  - .tags
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - bin
+  - vendor
+
+# Redirect settings
+redirect_from:
+  json: false
+
+# Gems
+plugins:
+  - jekyll-github-metadata
+  - jekyll-tailwind
+
+# Tailwind configuration
+tailwind:
+  input: "assets/css/app.css"
+  output: "_site/assets/css/app.css"

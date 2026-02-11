@@ -1,0 +1,380 @@
+@import 'tailwindcss';
+
+@import './ia-quattro';
+
+@theme {
+  --laser-pink: #ff2d95;
+  --laser-cyan: #00f0ff;
+  --laser-purple: #b14aff;
+  --laser-blue: #4d6cff;
+  --deep-void: #0a0014;
+  --font-mono: 'iA Writer Quattro S';
+}
+
+/* Deep space void */
+body {
+  background: linear-gradient(
+    180deg,
+    #0a0014 0%,
+    #0d0033 30%,
+    #1a0044 50%,
+    #0d0033 70%,
+    #0a0014 100%
+  );
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animated star field */
+.stars {
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 230px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 350px 200px, #fff, transparent),
+    radial-gradient(2px 2px at 420px 50px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 500px 180px, #fff, transparent),
+    radial-gradient(2px 2px at 580px 90px, rgba(255,255,255,0.9), transparent);
+  background-size: 600px 250px;
+  animation: twinkle 8s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Laser beams */
+.laser-1, .laser-2, .laser-3, .laser-4 {
+  position: fixed;
+  height: 2px;
+  z-index: 2;
+  filter: blur(0.5px);
+}
+
+.laser-1 {
+  width: 150%;
+  left: -25%;
+  top: 20%;
+  background: linear-gradient(90deg, transparent, var(--laser-cyan), var(--laser-cyan), transparent);
+  box-shadow: 0 0 15px var(--laser-cyan), 0 0 30px var(--laser-cyan);
+  rotate: -15deg;
+  animation: laser-pulse 3s ease-in-out infinite;
+}
+
+.laser-2 {
+  width: 140%;
+  left: -20%;
+  top: 75%;
+  background: linear-gradient(90deg, transparent, var(--laser-pink), var(--laser-pink), transparent);
+  box-shadow: 0 0 15px var(--laser-pink), 0 0 30px var(--laser-pink);
+  rotate: 12deg;
+  animation: laser-pulse 3s ease-in-out infinite 0.5s;
+}
+
+.laser-3 {
+  width: 130%;
+  left: -15%;
+  top: 40%;
+  background: linear-gradient(90deg, transparent, var(--laser-purple), var(--laser-purple), transparent);
+  box-shadow: 0 0 15px var(--laser-purple), 0 0 30px var(--laser-purple);
+  rotate: 8deg;
+  animation: laser-pulse 4s ease-in-out infinite 1s;
+}
+
+.laser-4 {
+  width: 120%;
+  left: -10%;
+  top: 60%;
+  background: linear-gradient(90deg, transparent, var(--laser-blue), var(--laser-blue), transparent);
+  box-shadow: 0 0 15px var(--laser-blue), 0 0 30px var(--laser-blue);
+  rotate: -5deg;
+  animation: laser-pulse 3.5s ease-in-out infinite 1.5s;
+}
+
+@keyframes laser-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Perspective grid floor */
+.grid-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.grid-floor {
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  right: -50%;
+  height: 100%;
+  background:
+    linear-gradient(90deg, var(--laser-purple) 1px, transparent 1px),
+    linear-gradient(0deg, var(--laser-purple) 1px, transparent 1px);
+  background-size: 80px 40px;
+  transform: perspective(300px) rotateX(70deg);
+  transform-origin: center top;
+  opacity: 0.4;
+  animation: grid-scroll 20s linear infinite;
+  mask-image: linear-gradient(to top, black 0%, transparent 80%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, transparent 80%);
+}
+
+@keyframes grid-scroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 400px; }
+}
+
+/* Glowing horizon line */
+.horizon {
+  position: fixed;
+  bottom: 35%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--laser-cyan), var(--laser-pink), var(--laser-cyan), transparent);
+  box-shadow:
+    0 0 20px var(--laser-cyan),
+    0 0 60px var(--laser-pink),
+    0 0 100px var(--laser-purple);
+  z-index: 3;
+}
+
+/* Main content */
+.terminal {
+  position: relative;
+  z-index: 10;
+  padding: 3rem;
+  text-align: center;
+}
+
+/* Power-on sequence */
+.page-header {
+  animation: power-on 1.2s ease-out;
+}
+
+.nav-links {
+  animation: power-on 1.2s ease-out 0.3s both;
+}
+
+@keyframes power-on {
+  0% {
+    opacity: 0;
+    filter: brightness(0);
+  }
+  20% {
+    opacity: 1;
+    filter: brightness(2);
+  }
+  30% {
+    filter: brightness(0.3);
+  }
+  50% {
+    filter: brightness(1.5);
+  }
+  70% {
+    filter: brightness(0.8);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.page-header p {
+  margin: 0;
+}
+
+/* Neon tube text */
+.page-header strong {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.6rem, 6vw, 3rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow:
+    /* Tight inner glow - the tube itself */
+    0 0 2px #fff,
+    0 0 5px #fff,
+    /* Main neon color */
+    0 0 10px #ff1493,
+    0 0 20px #ff1493,
+    0 0 30px #ff1493,
+    /* Outer bloom */
+    0 0 50px #ff1493,
+    0 0 80px #ff0080;
+  animation: neon-flicker 4s infinite;
+}
+
+@keyframes neon-flicker {
+  0%, 100% {
+    text-shadow:
+      0 0 2px #fff,
+      0 0 5px #fff,
+      0 0 10px #ff1493,
+      0 0 20px #ff1493,
+      0 0 30px #ff1493,
+      0 0 50px #ff1493,
+      0 0 80px #ff0080;
+  }
+  5% {
+    text-shadow:
+      0 0 1px #fff,
+      0 0 2px #fff,
+      0 0 5px #ff1493,
+      0 0 10px #ff1493,
+      0 0 15px #ff1493,
+      0 0 25px #ff1493,
+      0 0 40px #ff0080;
+  }
+  6% {
+    text-shadow:
+      0 0 2px #fff,
+      0 0 5px #fff,
+      0 0 10px #ff1493,
+      0 0 20px #ff1493,
+      0 0 30px #ff1493,
+      0 0 50px #ff1493,
+      0 0 80px #ff0080;
+  }
+  41% {
+    text-shadow:
+      0 0 2px #fff,
+      0 0 5px #fff,
+      0 0 10px #ff1493,
+      0 0 20px #ff1493,
+      0 0 30px #ff1493,
+      0 0 50px #ff1493,
+      0 0 80px #ff0080;
+  }
+  42% {
+    text-shadow:
+      0 0 1px rgba(255,255,255,0.8),
+      0 0 3px rgba(255,255,255,0.6),
+      0 0 6px #ff1493,
+      0 0 12px #ff1493,
+      0 0 18px #ff1493,
+      0 0 30px #ff1493,
+      0 0 50px #ff0080;
+  }
+  43% {
+    text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 8px #ff1493,
+      0 0 16px #ff1493,
+      0 0 24px #ff1493,
+      0 0 45px #ff1493,
+      0 0 70px #ff0080;
+  }
+  44% {
+    text-shadow:
+      0 0 2px #fff,
+      0 0 5px #fff,
+      0 0 10px #ff1493,
+      0 0 20px #ff1493,
+      0 0 30px #ff1493,
+      0 0 50px #ff1493,
+      0 0 80px #ff0080;
+  }
+  70% {
+    text-shadow:
+      0 0 2px #fff,
+      0 0 5px #fff,
+      0 0 12px #ff1493,
+      0 0 22px #ff1493,
+      0 0 35px #ff1493,
+      0 0 55px #ff1493,
+      0 0 90px #ff0080;
+  }
+}
+
+.page-header strong::after {
+  content: none;
+}
+
+/* Nav links - smaller neon tubes */
+.nav-links {
+  margin-top: 2.5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  transition: text-shadow 0.15s ease;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    0 0 8px var(--laser-cyan),
+    0 0 15px var(--laser-cyan),
+    0 0 25px var(--laser-cyan);
+}
+
+.nav-links a:hover {
+  text-shadow:
+    0 0 2px #fff,
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px var(--laser-cyan),
+    0 0 35px var(--laser-cyan),
+    0 0 50px var(--laser-blue);
+}
+
+.nav-links .separator {
+  color: #ff1493;
+  margin: 0 1.25em;
+  user-select: none;
+  text-shadow:
+    0 0 5px #ff1493,
+    0 0 10px #ff1493;
+  opacity: 0.8;
+}
+
+/* Subtle noise */
+.vignette {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Scanlines */
+.crt-warp {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.15) 3px,
+    rgba(0, 0, 0, 0.15) 6px
+  );
+  pointer-events: none;
+  z-index: 101;
+}
+
+[x-cloak=""] {
+  display: none;
+}
